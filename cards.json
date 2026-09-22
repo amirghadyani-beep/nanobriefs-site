@@ -1,0 +1,779 @@
+[
+ {
+  "doi": "10.1002/adfm.78386",
+  "title": "Graphene‐Analogous Monolayer Boron Pnictides for High‐Mobility Electronics",
+  "authors": [
+   "Hongze Ji",
+   "Lin Geng",
+   "Yanyan Zhao",
+   "Hongwei Su",
+   "Pin Zhao",
+   "Xu Zhang",
+   "Liwen Liang",
+   "Shuai Liu"
+  ],
+  "authors_truncated": true,
+  "journal": "Advanced Functional Materials",
+  "year": 2026,
+  "url": "https://doi.org/10.1002/adfm.78386",
+  "device_family": "CNTFET",
+  "material": "Monolayer hexagonal boron phosphide (h-BP) and boron arsenide (h-BAs) within single-walled carbon nanotubes (SWCNTs)",
+  "application": "High-mobility electronics, next-generation nanoelectronics",
+  "method": "Both",
+  "summary": "Graphene-analogous monolayer boron pnictides were synthesized for the first time using confined growth within single-walled carbon nanotubes, overcoming ambient instability issues. The h-BP@s-SWCNTs heterostructure demonstrates significantly enhanced carrier mobility through interface engineering and band structure modulation.",
+  "findings": [
+   "h-BP-filled s-SWCNTs heterostructure achieves ~15-fold mobility enhancement compared to pristine s-SWCNTs",
+   "Interfacial interactions between host-guest materials in confined space are crucial for stabilizing metastable hexagonal phase boron pnictides",
+   "Dirac-like electronic structure enables intrinsically high carrier mobility for next-generation electronics applications"
+  ],
+  "limitations": [
+   "Hexagonal phase boron pnictides are inherently unstable under ambient and conventional growth conditions",
+   "Synthesis accessibility limited to confined growth strategy within SWCNTs"
+  ],
+  "metrics": [
+   {
+    "name": "mobility",
+    "value": "526.9",
+    "unit": "cm²·V⁻¹·s⁻¹",
+    "conditions": "h-BP@s-SWCNTs heterostructure, highest value",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "mobility enhancement factor",
+    "value": "~15",
+    "unit": null,
+    "conditions": "h-BP@s-SWCNTs compared to pristine s-SWCNTs",
+    "source_location": "abstract",
+    "confidence": "high"
+   }
+  ],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1002/adma.75006",
+  "title": "Deterministic Patterning and Alignment of Tellurium Quantum Wires Using Nanoscale Templates",
+  "authors": [
+   "I K M Reaz Rahman",
+   "Scott Dhuey",
+   "Moniruzzaman Jamal",
+   "Taehoon Kim",
+   "Naoki Higashitarumizu",
+   "Selven Virasawmy",
+   "Aidar Kemelbay",
+   "Genki Ohkatsu"
+  ],
+  "authors_truncated": true,
+  "journal": "Advanced Materials",
+  "year": 2026,
+  "url": "https://doi.org/10.1002/adma.75006",
+  "device_family": "Quantum dot",
+  "material": "Tellurium (Te)",
+  "application": "Quantum transport, quantum dot devices, electronic and quantum technologies",
+  "method": "Both",
+  "summary": "This work demonstrates deterministic patterning and alignment of tellurium quantum wires using nanoscale templates on amorphous substrates. The approach achieves strong alignment of Te atomic chains at sub-20 nm template widths, enabling observation of quantum transport phenomena. Field-effect transistors show conductance plateaus and gate-tunable Coulomb blockade behavior.",
+  "findings": [
+   "Strong alignment of Te atomic chains achieved at template widths below 20 nm with single-crystal structure confirmed by 4D STEM",
+   "FETs exhibit well-defined conductance plateaus at 77 K corresponding to individual 1D subband population",
+   "Coulomb blockade emerges at 1.7 K with Te channel functioning as a gate-tunable quantum dot"
+  ],
+  "limitations": [
+   "Scalable synthesis methods previously lacked control over orientation and patterning of Te atomic chains"
+  ],
+  "metrics": [
+   {
+    "name": "Template width",
+    "value": "sub-20 nm",
+    "unit": "nm",
+    "conditions": "for strong Te atomic chain alignment",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Temperature for conductance plateaus",
+    "value": "77",
+    "unit": "K",
+    "conditions": "FET operation showing 1D subband population",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Temperature for Coulomb blockade",
+    "value": "1.7",
+    "unit": "K",
+    "conditions": "gate-tunable quantum dot behavior",
+    "source_location": "abstract",
+    "confidence": "high"
+   }
+  ],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1002/pssa.70512",
+  "title": "Next‐Generation Two‐Dimensional FET Biosensors: Mechanistic Insights, Surface Functionalization Strategies, and Emerging Device Architectures",
+  "authors": [
+   "Md Atiqur Rahman"
+  ],
+  "authors_truncated": false,
+  "journal": "physica status solidi (a)",
+  "year": 2026,
+  "url": "https://doi.org/10.1002/pssa.70512",
+  "device_family": "TMD FET",
+  "material": "graphene, transition-metal dichalcogenides (TMDs), black phosphorus, MXenes",
+  "application": "biosensors, label-free biomolecular detection, point-of-care diagnostics, wearable applications",
+  "method": "Unknown",
+  "summary": "This review examines 2D-material-based FET biosensors using graphene, TMDs, black phosphorus, and MXenes for label-free biomolecular detection. It analyzes sensing mechanisms including electrostatic gating and charge transfer, discusses surface functionalization strategies and methods to overcome Debye screening, and reviews emerging device architectures for improved sensitivity and energy efficiency.",
+  "findings": [
+   "Electrostatic gating, charge transfer, Donnan potential, and charge scattering are key sensing mechanisms in 2D FET biosensors",
+   "Surface functionalization with aptamer receptors, high-dielectric media, and high-frequency operation can overcome Debye screening limitations",
+   "Schottky-barrier, junctionless, split-gate, and tunnel FETs show promise for enhanced sensitivity and energy efficiency"
+  ],
+  "limitations": [
+   "Challenges in scalability, stability, and reproducibility of 2D FET biosensors remain unresolved",
+   "Ongoing debate about the role and limitations of charge transfer in graphene-based systems",
+   "Debye screening effect limits sensing performance in conventional configurations"
+  ],
+  "metrics": [],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1002/smll.75645",
+  "title": "Rylene Diimides Featuring Quadruple C─H···(O═C) Locking for High‐Mobility Organic Semiconductors",
+  "authors": [
+   "Shunlong Hu",
+   "Zijie Dai",
+   "Xin Jin",
+   "Mengying Tian",
+   "Yu Zhai",
+   "Fengjiao Liu",
+   "Guogang Liu",
+   "Aifeng Lv"
+  ],
+  "authors_truncated": true,
+  "journal": "Small",
+  "year": 2026,
+  "url": "https://doi.org/10.1002/smll.75645",
+  "device_family": "Other",
+  "material": "Sila-annulated hexarylene diimide (2Si-HDI), rylene diimide",
+  "application": "Organic semiconductors, organic field-effect transistors",
+  "method": "Both",
+  "summary": "A novel sila-annulated hexarylene diimide is designed with quadruple C─H···(O═C) hydrogen bonding that enables controlled one-dimensional slipped π─π stacking in organic semiconductors. Single-crystalline transistors demonstrate excellent hole mobility with high transfer integrals, providing design principles for large polycyclic aromatic hydrocarbon materials.",
+  "findings": [
+   "Quadruple C─H···(O═C) locking between silole and diimide groups enables first 1D slipped π─π stacking in ultra-long rylenes",
+   "Single-crystalline OFET hole mobility of 3.08 cm² V⁻¹ s⁻¹ and electron mobility of 0.06 cm² V⁻¹ s⁻¹",
+   "Hole transfer integral of 110.08 meV and electron transfer integral of 78.08 meV rationalize superior charge transport"
+  ],
+  "limitations": [
+   "Electron mobility significantly lower than hole mobility",
+   "Design limited to specific peri- and bay-position substitution patterns"
+  ],
+  "metrics": [
+   {
+    "name": "hole mobility",
+    "value": "3.08",
+    "unit": "cm² V⁻¹ s⁻¹",
+    "conditions": "single-crystalline organic field-effect transistor",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "electron mobility",
+    "value": "0.06",
+    "unit": "cm² V⁻¹ s⁻¹",
+    "conditions": "single-crystalline organic field-effect transistor",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "hole transfer integral",
+    "value": "110.08",
+    "unit": "meV",
+    "conditions": "along π─π stacking direction",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "electron transfer integral",
+    "value": "78.08",
+    "unit": "meV",
+    "conditions": "along π─π stacking direction",
+    "source_location": "abstract",
+    "confidence": "high"
+   }
+  ],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1002/smll.75843",
+  "title": "Rapid and Efficient Organic‐Aqueous Two‐Phase Extraction of High‐Purity Semiconducting Single‐Walled Carbon Nanotubes",
+  "authors": [
+   "Rongbin Xie",
+   "Yingnan Yang",
+   "Xiao Lei",
+   "Kai Wang",
+   "Cheng Li",
+   "Wenshan Li"
+  ],
+  "authors_truncated": false,
+  "journal": "Small",
+  "year": 2026,
+  "url": "https://doi.org/10.1002/smll.75843",
+  "device_family": "CNTFET",
+  "material": "Semiconducting single-walled carbon nanotubes (sc-SWCNTs)",
+  "application": "Nanoelectronics, transistor arrays",
+  "method": "Both",
+  "summary": "This work presents an organic-aqueous two-phase extraction method for rapid purification of semiconducting single-walled carbon nanotubes. The approach combines polymer-assisted sorting with interfacial extraction to remove metallic nanotubes while preserving structural integrity, achieving high purity and yield with significantly reduced processing time.",
+  "findings": [
+   "Purification time reduced from approximately 3 hours to 1 hour compared to conventional multi-cycle methods",
+   "Purification yield increased from approximately 2.5% to approximately 6.1%",
+   "Transistor arrays from purified sc-SWCNTs show semiconducting purity exceeding 99.9999% based on statistical analysis of approximately 2000 devices"
+  ],
+  "limitations": [
+   "Method applicability demonstrated on three synthesis routes but broader scalability not fully discussed",
+   "Large-scale production feasibility beyond the reported device fabrication scale not addressed"
+  ],
+  "metrics": [
+   {
+    "name": "Purification time (conventional method)",
+    "value": "approximately 3 h",
+    "unit": "hours",
+    "conditions": "conventional multi-cycle purification process",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Purification time (OATPE method)",
+    "value": "1 h",
+    "unit": "hours",
+    "conditions": "organic-aqueous two-phase extraction",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Purification yield (conventional method)",
+    "value": "∼2.5%",
+    "unit": "%",
+    "conditions": "conventional multi-cycle purification process",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Purification yield (OATPE method)",
+    "value": "∼6.1%",
+    "unit": "%",
+    "conditions": "organic-aqueous two-phase extraction",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Semiconducting purity",
+    "value": "exceeding 99.9999%",
+    "unit": "%",
+    "conditions": "transistor arrays from purified sc-SWCNTs, statistical analysis of approximately 2000 devices",
+    "source_location": "abstract",
+    "confidence": "high"
+   }
+  ],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1021/acs.langmuir.6c04348",
+  "title": "Emergent Electronic, Spin, and Transport Properties of Bilayer van der Waals Heterostructures from Antimonene, Tellurene, and PtTe2 Monolayers",
+  "authors": [
+   "Xiaolin Cai",
+   "Li Mao",
+   "Junke Yuan",
+   "Rui Li",
+   "Chunxiang Zhao",
+   "Yu Jia"
+  ],
+  "authors_truncated": false,
+  "journal": "Langmuir",
+  "year": 2026,
+  "url": "https://doi.org/10.1021/acs.langmuir.6c04348",
+  "device_family": "TFET",
+  "material": "Antimonene, Tellurene, PtTe2 bilayer van der Waals heterostructures",
+  "application": "Tunneling field-effect transistors, nanoelectronic, optoelectronic, piezoelectric, and spintronic devices",
+  "method": "Simulation",
+  "summary": "Bilayer van der Waals heterostructures composed of antimonene, tellurene, and PtTe2 monolayers were systematically studied using first-principles calculations. The heterostructures exhibit broken spatial inversion symmetry and strong interlayer hybridization, resulting in reduced bandgaps, pronounced spin splitting, and extraordinary Rashba effects with tunable properties via strain and electric fields.",
+  "findings": [
+   "Sb/PtTe2 bilayer exhibits type-III broken-gap band alignment suitable for TFET applications with pronounced tunneling effects",
+   "Rashba coefficients of Sb/Te, Te/PtTe2, and Sb/PtTe2 reach 1.08, 2.89, and 2.85 eV Å respectively, enhanceable to 3.45 eV Å under 6% tensile strain",
+   "Carrier mobilities of Sb/Te and Te/PtTe2 heterostructures significantly enhanced up to 10^4 cm² V⁻¹ s⁻¹ with improved optical absorption in visible region"
+  ],
+  "limitations": [
+   "Study is based on first-principles calculations only; experimental validation not provided",
+   "Practical device fabrication and integration challenges of these heterostructures not addressed"
+  ],
+  "metrics": [
+   {
+    "name": "Rashba coefficient",
+    "value": "1.08",
+    "unit": "eV Å",
+    "conditions": "Sb/Te heterostructure",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Rashba coefficient",
+    "value": "2.89",
+    "unit": "eV Å",
+    "conditions": "Te/PtTe2 heterostructure",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Rashba coefficient",
+    "value": "2.85",
+    "unit": "eV Å",
+    "conditions": "Sb/PtTe2 heterostructure",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Rashba coefficient",
+    "value": "3.45",
+    "unit": "eV Å",
+    "conditions": "Te/PtTe2 heterostructure under 6% tensile strain",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Carrier mobility",
+    "value": "10^4",
+    "unit": "cm² V⁻¹ s⁻¹",
+    "conditions": "Sb/Te and Te/PtTe2 heterostructures",
+    "source_location": "abstract",
+    "confidence": "high"
+   }
+  ],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1021/acs.nanolett.6c02072",
+  "title": "Mechanical Programming of Carrier Flow by Band-Alignment Inversion in Two-Dimensional Heterostructures",
+  "authors": [
+   "Tingbo Zhang",
+   "Xianghong Niu",
+   "Meiling Xu",
+   "Jian Hao",
+   "Ming‐Gang Ju",
+   "Y Li"
+  ],
+  "authors_truncated": false,
+  "journal": "Nano Letters",
+  "year": 2026,
+  "url": "https://doi.org/10.1021/acs.nanolett.6c02072",
+  "device_family": "Other",
+  "material": "WSe2/Zr2CO2 heterostructures, transition-metal dichalcogenides (TMDCs), transition-metal carbides (MXenes)",
+  "application": "optoelectronic logic, photocatalysis",
+  "method": "Simulation",
+  "summary": "Tensile strain can reverse the direction of photogenerated carrier transfer in TMDC/MXene heterostructures by inverting band-edge alignment, while maintaining efficient charge separation. This occurs because strain affects the band edges of weakly ionic TMDCs and strongly ionic MXenes in opposite ways. The mechanism enables mechanical control of carrier flow without degrading charge separation kinetics.",
+  "findings": [
+   "Strain-driven band-alignment inversion reverses both electron and hole transfer directions in WSe2/Zr2CO2 heterostructures",
+   "Ultrafast femtosecond charge separation and nanosecond carrier lifetimes are preserved during band-alignment inversion",
+   "Opposite orbital responses of TMDCs and MXenes to strain enable the inversion mechanism"
+  ],
+  "limitations": [
+   "Study relies on nonadiabatic molecular dynamics simulations without experimental validation",
+   "Mechanism demonstrated primarily on one specific heterostructure system (WSe2/Zr2CO2)"
+  ],
+  "metrics": [
+   {
+    "name": "charge separation timescale",
+    "value": "femtosecond",
+    "unit": null,
+    "conditions": "WSe2/Zr2CO2 heterostructures",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "carrier lifetime",
+    "value": "nanosecond",
+    "unit": null,
+    "conditions": "WSe2/Zr2CO2 heterostructures",
+    "source_location": "abstract",
+    "confidence": "high"
+   }
+  ],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1021/acs.nanolett.6c02908",
+  "title": "One-Dimensional van der Waals Heterostructure Field-Effect Transistors",
+  "authors": [
+   "Yicheng Ma",
+   "Zhou Zhou",
+   "Lingfeng Wang",
+   "Tianyu Wang",
+   "Chunxia Yang",
+   "Qi Zhang",
+   "Wule Zhu",
+   "Zongyin Yang"
+  ],
+  "authors_truncated": true,
+  "journal": "Nano Letters",
+  "year": 2026,
+  "url": "https://doi.org/10.1021/acs.nanolett.6c02908",
+  "device_family": "CNTFET",
+  "material": "Single-walled carbon nanotubes (SWCNTs) encapsulated by boron nitride nanotubes (BNNTs)",
+  "application": "Next-generation nanoelectronics",
+  "method": "Both",
+  "summary": "Field-effect transistors were fabricated using individual one-dimensional van der Waals heterostructures consisting of SWCNTs protected by few-layer BNNTs. Direct comparison on the same nanotube with and without BNNT coating revealed that metallic SWCNTs benefit from enhanced output currents via electrostatic screening, while semiconducting SWCNTs show reduced hysteresis through environmental isolation.",
+  "findings": [
+   "BNNT encapsulation provides excellent electrostatic screening that increases output currents in metallic SWCNTs",
+   "BNNT protection reduces hysteresis in semiconducting SWCNTs through environmental isolation",
+   "BNNTs act as an effective barrier against harsh environments such as oxygen plasma etching during device fabrication"
+  ],
+  "limitations": [
+   "Device performance is initially susceptible to environmental degradation due to the atomically thin geometry and large surface area of SWCNTs"
+  ],
+  "metrics": [],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1021/acsnano.6c02189",
+  "title": "Revisiting the Schottky-Mott Relation for Metal/Transition Metal Dichalcogenide Interfaces: The Role of Interface Dipoles",
+  "authors": [
+   "Chih‐Piao Chuu",
+   "Shu-Jui Chang",
+   "Yu‐Miin Sheu",
+   "Zhiyang Huang",
+   "Wei‐Tung Liu",
+   "Po-Wei Chen",
+   "Sui-An Chou",
+   "Yu-Tung Lin"
+  ],
+  "authors_truncated": true,
+  "journal": "ACS Nano",
+  "year": 2026,
+  "url": "https://doi.org/10.1021/acsnano.6c02189",
+  "device_family": "TMD FET",
+  "material": "transition metal dichalcogenide (TMD)",
+  "application": "contact engineering for 2D field-effect transistors",
+  "method": "Both",
+  "summary": "The study investigates Fermi-level pinning at metal/TMD interfaces using first-principles calculations and experimental techniques. The research demonstrates that interface dipoles and short-range potentials govern Fermi-level pinning, validating the Schottky-Mott relation through metal effective work function analysis.",
+  "findings": [
+   "Fermi-level pinning is controlled by long-range dipole interactions and extended short-range Lennard-Jones potentials",
+   "Metal effective work function serves as a reliable figure of merit for the Schottky-Mott relation in 2D semiconductors",
+   "The linear Schottky-Mott relation framework improves predictive capabilities for contact engineering in TMD-based devices"
+  ],
+  "limitations": [
+   "Study focuses on regimes where material thickness is comparable to interface thickness, which may limit general applicability",
+   "High contact resistance remains a significant challenge despite improved understanding of Fermi-level pinning mechanisms"
+  ],
+  "metrics": [],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1021/acssensors.6c02092",
+  "title": "Sample-to-Answer Serum Diagnostics System-on-Chip",
+  "authors": [
+   "Zijun Zhao",
+   "Lu Wan",
+   "Kemin Wang",
+   "Jiajun Tong",
+   "Zhengwu Cao",
+   "Guojun Zhang",
+   "Xiaofeng Liu",
+   "Yiwei Liu"
+  ],
+  "authors_truncated": true,
+  "journal": "ACS Sensors",
+  "year": 2026,
+  "url": "https://doi.org/10.1021/acssensors.6c02092",
+  "device_family": "CNTFET",
+  "material": "carbon nanotube",
+  "application": "point-of-care protein detection, tumor biomarker diagnostics",
+  "method": "Both",
+  "summary": "A biological detection system-on-chip integrates microfluidic purification with carbon nanotube FET biosensors for ultrasensitive protein analysis in serum samples. The device demonstrates direct detection of tumor biomarkers at extremely low concentrations and achieved 100% diagnostic accuracy on 24 clinical serum samples.",
+  "findings": [
+   "Detected tumor biomarkers in undiluted serum across concentration range of 2 fg/mL to 1 pg/mL",
+   "Achieved 100% diagnostic accuracy on 24 clinical serum samples",
+   "Platform is scalable for future integration of biosensor arrays and multiplexing capabilities"
+  ],
+  "limitations": [
+   "Preliminary cohort study with only 24 clinical samples",
+   "Multiplexing and advanced fluidic control modules not yet fully integrated"
+  ],
+  "metrics": [
+   {
+    "name": "protein detection range (minimum)",
+    "value": "2",
+    "unit": "fg/mL",
+    "conditions": "in undiluted serum",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "protein detection range (maximum)",
+    "value": "1",
+    "unit": "pg/mL",
+    "conditions": "in undiluted serum",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "diagnostic accuracy",
+    "value": "100%",
+    "unit": null,
+    "conditions": "24 clinical serum samples tested",
+    "source_location": "abstract",
+    "confidence": "high"
+   }
+  ],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1063/1.5013774",
+  "title": "Molecular dynamics modeling of bonding two materials by atomic scale friction stir welding at different process parameters",
+  "authors": [
+   "Ivan S. Konovalenko",
+   "S. G. Psakhie"
+  ],
+  "authors_truncated": false,
+  "journal": "AIP conference proceedings",
+  "year": 2017,
+  "url": "https://doi.org/10.1063/1.5013774",
+  "device_family": "Other",
+  "material": "Crystalline metals (unspecified)",
+  "application": "Friction stir welding process optimization",
+  "method": "Simulation",
+  "summary": "Molecular dynamics simulations were performed to examine atomic-scale friction stir welding of two crystallites at varying tool plunge depths. The study investigated how plunge depth influences heating, material deformation, and mass transfer during the welding process.",
+  "findings": [
+   "Increased plunge depth produces more intense heating and reduces resistance of plasticized metal to tool movement",
+   "Mass transfer intensity shows minimal dependence on plunge depth variation",
+   "Plunge depth can serve as an additional friction stir welding process control parameter"
+  ],
+  "limitations": [
+   "Simulations limited to nanosized crystallites, scalability to macroscopic welding unclear",
+   "Material composition not specified in abstract"
+  ],
+  "metrics": [],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1142/s0217984926502337",
+  "title": "Electrostatically defined ZnO quantum devices",
+  "authors": [
+   "Yusuke Kozuka",
+   "Tomohiro Otsuka"
+  ],
+  "authors_truncated": false,
+  "journal": "Modern Physics Letters B",
+  "year": 2026,
+  "url": "https://doi.org/10.1142/s0217984926502337",
+  "device_family": "Quantum dot",
+  "material": "ZnO heterostructures",
+  "application": "Quantum electronics, single-electron transistors, spin qubits",
+  "method": "Both",
+  "summary": "This review examines electrostatically defined quantum devices based on ZnO heterostructures, emphasizing quantum dots formed through electrostatic gating. ZnO offers advantages similar to Si, including low nuclear spin density, while maintaining high-quality heterostructure capabilities comparable to GaAs. Recent achievements include 1D and 0D electron confinement with observable quantized transport phenomena.",
+  "findings": [
+   "Quantized conductance steps in 1D channels and Coulomb blockade effects observed in 0D structures of ZnO heterostructures",
+   "ZnO heterostructures achieve electron coherence and dimensional control through electrostatic gating techniques comparable to conventional GaAs and Si platforms",
+   "Low nuclear spin density in ZnO suppresses hyperfine decoherence, offering advantages for quantum device applications"
+  ],
+  "limitations": [
+   "Review does not provide quantitative performance metrics or benchmarks comparing ZnO devices to GaAs or Si implementations"
+  ],
+  "metrics": [],
+  "status": "verified"
+ },
+ {
+  "doi": "10.1142/s2047684126500284",
+  "title": "Impact of Elastic Phonon Dephasing on the Switching Performance of Armchair Graphene Nanoribbon Field Effect Transistor",
+  "authors": [
+   "Mahfuzur Rahman Munna",
+   "Adib Md. Ridwan",
+   "Mahbub Alam"
+  ],
+  "authors_truncated": false,
+  "journal": "International Journal of Computational Materials Science and Engineering",
+  "year": 2026,
+  "url": "https://doi.org/10.1142/s2047684126500284",
+  "device_family": "GNRFET",
+  "material": "Armchair graphene nanoribbon",
+  "application": "Nextgeneration nanoelectronics",
+  "method": "Simulation",
+  "summary": "This work uses non-equilibrium Green's function simulations to study how elastic phonon dephasing affects dual-gate armchair graphene nanoribbon transistors. The analysis compares momentum-conserving and momentum-relaxing scattering regimes and their impact on device switching performance and transport properties.",
+  "findings": [
+   "Momentum-conserving dephasing degrades switching behavior by increasing off-state leakage and worsening subthreshold characteristics",
+   "Momentum-relaxing dephasing preserves transistor-like operation with minor performance degradation and maintains energy selectivity",
+   "Dephasing mechanisms critically influence transport gap characteristics and are essential for reliable nanoscale transistor design"
+  ],
+  "limitations": [
+   "Study uses scalar coupling parameter to model phonon dephasing rather than full microscopic scattering mechanisms",
+   "Analysis limited to dual-gate AGNR configuration"
+  ],
+  "metrics": [],
+  "status": "verified"
+ },
+ {
+  "doi": "10.48550/arxiv.2609.12596",
+  "title": "Cryogenic wafer probing below one Kelvin: Characterization of normal-metal Coulomb blockade thermometers at wafer scale",
+  "authors": [
+   "Lassi Lehtisyrjä",
+   "Renan P. Loreto",
+   "Juho Luomahaara",
+   "J. Järvinen",
+   "Tuure Rantanen",
+   "Juha Vikstedt",
+   "Janne S. Lehtinen",
+   "Matti Remes"
+  ],
+  "authors_truncated": true,
+  "journal": "arXiv (Cornell University)",
+  "year": 2026,
+  "url": "https://doi.org/10.48550/arxiv.2609.12596",
+  "device_family": "SET",
+  "material": "TiW/Al-AlOx/TiW",
+  "application": "Cryogenic thermometry for quantum technology",
+  "method": "Experiment",
+  "summary": "This work demonstrates wafer-scale characterization of normal-metal Coulomb blockade thermometers using a cryogenic wafer prober on 150 mm wafers. The devices can operate as primary thermometers without calibration or as secondary resistance thermometers, achieving on-chip electron temperatures below 700 mK and establishing a high-throughput approach for testing quantum devices at cryogenic temperatures.",
+  "findings": [
+   "On-chip electron temperatures achieved below 700 mK across full 150 mm wafers using wafer-scale characterization",
+   "Normal-metal tunnel junction CBTs demonstrate functionality as both primary and secondary thermometers",
+   "Cryogenic wafer probing enables high-throughput screening of quantum devices and aluminum-based superconducting circuits"
+  ],
+  "limitations": [
+   "Traditional cryostat characterization limited by turnover time and sample capacity"
+  ],
+  "metrics": [
+   {
+    "name": "on-chip electron temperature",
+    "value": "below 700 mK",
+    "unit": "mK",
+    "conditions": "across 150 mm wafer",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "wafer diameter",
+    "value": "150",
+    "unit": "mm",
+    "conditions": null,
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "cryogenic wafer prober size",
+    "value": "300",
+    "unit": "mm",
+    "conditions": null,
+    "source_location": "abstract",
+    "confidence": "high"
+   }
+  ],
+  "status": "verified"
+ },
+ {
+  "doi": "10.48550/arxiv.2609.16320",
+  "title": "Probing proximity-induced superconductivity in bilayer graphene using gate-defined quantum dots",
+  "authors": [
+   "Philipp Schmidt",
+   "Mathies Funke",
+   "Till Tenger",
+   "Katarina Stanojević",
+   "H. Dulisch",
+   "Kenji Watanabe",
+   "Takashi Taniguchi",
+   "Fabian Hassler"
+  ],
+  "authors_truncated": true,
+  "journal": "arXiv (Cornell University)",
+  "year": 2026,
+  "url": "https://doi.org/10.48550/arxiv.2609.16320",
+  "device_family": "Quantum dot",
+  "material": "Bilayer graphene proximitized by NbSe₂",
+  "application": "Spectroscopic probing of proximity-induced superconductivity in van der Waals heterostructures",
+  "method": "Experiment",
+  "summary": "An all-2D hybrid device combines bilayer graphene with superconducting NbSe₂ using gate-defined quantum dots as local probes. The study demonstrates proximity-induced superconductivity in the graphene channel and tracks how the superconducting gap evolves with distance from the superconductor contact.",
+  "findings": [
+   "Proximity-induced superconducting gap reaches up to 80 μeV in proximitized bilayer graphene",
+   "Local density of states remains suppressed over distances exceeding 1 μm, indicating highly ballistic superconducting proximity effect",
+   "Gate-tunable quantum dots enable local spectroscopic control and characterization of the proximitized channel"
+  ],
+  "limitations": [
+   "Gap magnitude and spatial extent may be limited by material quality and interface properties",
+   "Study focuses on proximity effects at specific distances from the superconductor-semiconductor interface"
+  ],
+  "metrics": [
+   {
+    "name": "Proximity-induced superconducting gap",
+    "value": "up to 80",
+    "unit": "μeV",
+    "conditions": "in proximitized bilayer graphene channel",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Suppression distance of local density of states",
+    "value": "exceeding 1",
+    "unit": "μm",
+    "conditions": "from NbSe₂ contact",
+    "source_location": "abstract",
+    "confidence": "high"
+   }
+  ],
+  "status": "verified"
+ },
+ {
+  "doi": "10.48550/arxiv.2609.20043",
+  "title": "Highly uniform first-electron position in qubit arrays fabricated on dedicated QSOI(R) 300mm commercial platform",
+  "authors": [
+   "Johan Pelloux-Prayer",
+   "Elise Prin",
+   "Giselle A. Elbaz",
+   "Pierre-Louis Julliard",
+   "Amaryllis Comiti",
+   "Clément Nguyen",
+   "Sylvain Martin",
+   "P. Torresani"
+  ],
+  "authors_truncated": true,
+  "journal": "arXiv (Cornell University)",
+  "year": 2026,
+  "url": "https://doi.org/10.48550/arxiv.2609.20043",
+  "device_family": "Quantum dot",
+  "material": "Silicon-on-insulator (SOI)",
+  "application": "Quantum computing, qubit arrays",
+  "method": "Both",
+  "summary": "A quantum silicon-on-insulator technology compatible with 300mm CMOS fabrication was developed for scalable quantum computing. The QSOI(R) platform, adapted from 28nm FD-SOI, demonstrates significantly improved device uniformity and reduced variability compared to standard 28nm FD-SOI, with successful quantum dot operation in the few-electron regime.",
+  "findings": [
+   "QSOI(R) technology achieves 69% yield for successful charge detection of the first electron across 377 quantum dots",
+   "First electron position dispersion of ±35 mV demonstrates highly uniform electrostatic properties at the wafer level",
+   "TCAD simulations validate that device electrostatics behave as expected for the QSOI(R) platform"
+  ],
+  "limitations": [
+   "31% failure rate in charge detection of first electron suggests room for further optimization",
+   "Measurements performed at sub-2K temperatures, limiting immediate practical applications"
+  ],
+  "metrics": [
+   {
+    "name": "First electron position dispersion",
+    "value": "±35 mV",
+    "unit": "mV",
+    "conditions": "Over 377 quantum dots, wafer-scale measurements at sub-2K",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Yield for first electron charge detection",
+    "value": "69%",
+    "unit": "%",
+    "conditions": "Sub-2K measurements on quantum dots",
+    "source_location": "abstract",
+    "confidence": "high"
+   },
+   {
+    "name": "Number of quantum dots measured",
+    "value": "377",
+    "unit": null,
+    "conditions": "Wafer-scale measurements",
+    "source_location": "abstract",
+    "confidence": "high"
+   }
+  ],
+  "status": "verified"
+ }
+]
