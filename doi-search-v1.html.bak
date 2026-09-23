@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DOI Lookup — NanoBriefs</title>
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1a1d21; --muted: #5b6470; --card: #f5f7fa; --line: #d9dee5;
+    --accent: #0b6bcb; --accent-fg: #ffffff; --ok: #12704a; --ok-bg: #e3f4ec; --warn: #8a5a00; --warn-bg: #fff3d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151a; --fg: #e8ebef; --muted: #9aa4b1; --card: #1b2028; --line: #2c333d;
+      --accent: #4aa3ff; --accent-fg: #0a1220; --ok: #6fd6a6; --ok-bg: #12301f; --warn: #f0c060; --warn-bg: #33270d;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { height: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  h2 { font-size: 1.15rem; margin: 28px 0 10px; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  form { display: flex; gap: 8px; flex-wrap: wrap; }
+  input[type="text"] {
+    flex: 1 1 260px; min-width: 0; padding: 12px 14px; font-size: 1rem; color: var(--fg);
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  }
+  button, .btn {
+    padding: 12px 18px; font-size: 1rem; border: 0; border-radius: 10px; cursor: pointer;
+    background: var(--accent); color: var(--accent-fg); text-decoration: none; display: inline-block;
+  }
+  .btn.secondary { background: var(--card); color: var(--fg); border: 1px solid var(--line); }
+  .note { color: var(--muted); font-size: .9rem; margin-top: 10px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-top: 18px; }
+  .card h3 { margin: 0 0 6px; font-size: 1.15rem; line-height: 1.35; }
+  .meta { color: var(--muted); font-size: .92rem; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .8rem; margin-right: 6px; }
+  .badge.ok { background: var(--ok-bg); color: var(--ok); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn); }
+  .badge.tag { background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
+  dl { margin: 14px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; }
+  dt { color: var(--muted); }
+  dd { margin: 0; }
+  ul { margin: 6px 0 0; padding-left: 20px; }
+  .tablewrap { overflow-x: auto; margin-top: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 520px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  .low { color: var(--warn); }
+  .empty { padding: 18px; border: 1px dashed var(--line); border-radius: 12px; margin-top: 18px; }
+  .list a { color: var(--accent); }
+  .list li { margin: 6px 0; }
+  footer { margin-top: 36px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 14px; }
+  .demo { background: var(--warn-bg); color: var(--warn); padding: 8px 12px; border-radius: 8px; margin-bottom: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>DOI Lookup</h1>
+  <p class="sub">Paste a DOI to get a structured, human-checked summary and device metrics for nanoelectronics papers.</p>
+
+  <form id="f" autocomplete="off">
+    <input id="q" type="text" inputmode="url" placeholder="10.1234/example.2026.001" aria-label="DOI">
+    <button type="submit">Look up</button>
+  </form>
+  <p class="note">Phase 0: this page shows papers we have already processed. If your DOI isn't listed, you can request it and we'll add it manually.</p>
+
+  <div id="out" aria-live="polite"></div>
+
+  <h2>Recently added</h2>
+  <ul id="recent" class="list"></ul>
+
+  <footer>
+    Summaries are AI-assisted and reviewed by a person, but they can contain mistakes and are not a substitute for the original paper.
+    Always check numbers against the source (see the DOI link on each card).
+  </footer>
+</main>
+
+<script>
+(function () {
+  // ---- settings: edit these two lines ----
+  var REQUEST_EMAIL = "requests@nanobriefs.com";
+  var DATA_URL = "cards.json";
+  // ----------------------------------------
+
+  // BEGIN normalizeDoi
+  function normalizeDoi(s) {
+    s = String(s || "").trim().toLowerCase();
+    s = s.replace(/^(https?:\/\/)?(dx\.)?doi\.org\//, "");
+    s = s.replace(/^doi:\s*/, "");
+    s = s.trim().replace(/[.,;]+$/, "");
+    return /^10\.\d{4,9}\/\S+$/.test(s) ? s : null;
+  }
+  // END normalizeDoi
+
+  var DEMO = [{
+    doi: "10.0000/demo.0001", title: "DEMO ONLY: example paper title (not a real paper)",
+    authors: ["Demo Author"], journal: "Demo Journal", year: 2026, url: "https://doi.org/10.0000/demo.0001",
+    device_family: "TFET", material: "Example material", application: "Example application", method: "Simulation",
+    summary: "This is placeholder text used to preview the layout of a card.",
+    findings: ["Placeholder finding one.", "Placeholder finding two."], limitations: ["Placeholder limitation."],
+    metrics: [{ name: "SS", value: "0", unit: "mV/dec", conditions: "example conditions", source_location: "Table X", confidence: "low" }],
+    status: "verified"
+  }];
+
+  var params = new URLSearchParams(location.search);
+  var isDemo = params.get("demo") === "1";
+  var cards = [];
+  var out = document.getElementById("out");
+  var recent = document.getElementById("recent");
+  var input = document.getElementById("q");
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined && text !== null) n.textContent = text;   // textContent only: data is never parsed as HTML
+    return n;
+  }
+  function row(dl, label, value) {
+    if (value === null || value === undefined || value === "") return;
+    dl.appendChild(el("dt", null, label));
+    dl.appendChild(el("dd", null, value));
+  }
+  function list(items) {
+    var ul = el("ul");
+    (items || []).forEach(function (t) { ul.appendChild(el("li", null, t)); });
+    return ul;
+  }
+
+  function renderCard(c) {
+    var card = el("article", "card");
+    var head = el("div");
+    head.appendChild(el("span", c.status === "verified" ? "badge ok" : "badge warn",
+                        c.status === "verified" ? "Reviewed" : "Needs review"));
+    if (c.device_family) head.appendChild(el("span", "badge tag", c.device_family));
+    card.appendChild(head);
+    card.appendChild(el("h3", null, c.title || "(untitled)"));
+    var authors = (c.authors || []).join(", ") + (c.authors_truncated ? " et al." : "");
+    card.appendChild(el("div", "meta", [authors, c.journal, c.year].filter(Boolean).join(" · ")));
+
+    var dl = el("dl");
+    row(dl, "Material", c.material);
+    row(dl, "Application", c.application);
+    row(dl, "Method", c.method);
+    row(dl, "Summary", c.summary);
+    card.appendChild(dl);
+
+    if (c.findings && c.findings.length) { card.appendChild(el("h2", null, "Main findings")); card.appendChild(list(c.findings)); }
+    if (c.limitations && c.limitations.length) { card.appendChild(el("h2", null, "Limitations")); card.appendChild(list(c.limitations)); }
+
+    if (c.metrics && c.metrics.length) {
+      card.appendChild(el("h2", null, "Device metrics"));
+      var wrap = el("div", "tablewrap"), t = el("table"), thead = el("thead"), hr = el("tr");
+      ["Metric", "Value", "Unit", "Conditions", "Source", "Confidence"].forEach(function (h) { hr.appendChild(el("th", null, h)); });
+      thead.appendChild(hr); t.appendChild(thead);
+      var tb = el("tbody");
+      c.metrics.forEach(function (m) {
+        var tr = el("tr");
+        [m.name, m.value, m.unit || "", m.conditions || "", m.source_location || ""].forEach(function (v) { tr.appendChild(el("td", null, v)); });
+        tr.appendChild(el("td", m.confidence === "low" ? "low" : null, m.confidence || ""));
+        tb.appendChild(tr);
+      });
+      t.appendChild(tb); wrap.appendChild(t); card.appendChild(wrap);
+    }
+
+    var links = el("p");
+    var a = el("a", "btn secondary", "Open original paper (DOI)");
+    a.href = "https://doi.org/" + encodeURI(c.doi); a.target = "_blank"; a.rel = "noopener noreferrer";
+    links.appendChild(a); card.appendChild(links);
+    return card;
+  }
+
+  function renderMissing(doi) {
+    var box = el("div", "empty");
+    box.appendChild(el("p", null, "We don't have " + doi + " yet."));
+    var a = el("a", "btn", "Request this DOI");
+    var subject = "DOI request: " + doi;
+    var body = "Please add this paper to NanoBriefs:\n" + doi + "\n\nMy field / what I need from it (optional):\n";
+    a.href = "mailto:" + REQUEST_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    box.appendChild(a);
+    return box;
+  }
+
+  function show(node) { out.textContent = ""; if (node) out.appendChild(node); }
+
+  function search(raw) {
+    var doi = normalizeDoi(raw);
+    if (!doi) { show(el("div", "empty", "That doesn't look like a DOI. Example: 10.1234/example.2026.001")); return; }
+    var hit = null;
+    cards.forEach(function (c) { if (normalizeDoi(c.doi) === doi) hit = c; });
+    if (hit) {
+      var wrap = el("div");
+      if (isDemo) wrap.appendChild(el("div", "demo", "Demo data — not a real paper."));
+      wrap.appendChild(renderCard(hit));
+      show(wrap);
+    } else show(renderMissing(doi));
+    try { history.replaceState(null, "", "?doi=" + encodeURIComponent(doi) + (isDemo ? "&demo=1" : "")); } catch (e) {}
+  }
+
+  function renderRecent() {
+    recent.textContent = "";
+    if (!cards.length) { recent.appendChild(el("li", null, "No papers published yet.")); return; }
+    cards.slice(0, 100).reverse().forEach(function (c) {
+      var li = el("li"), a = el("a", null, c.title || c.doi);
+      a.href = "#"; a.addEventListener("click", function (e) { e.preventDefault(); input.value = c.doi; search(c.doi); setTimeout(function(){ window.scrollTo({top: 0, behavior: 'smooth'}); }, 50); });      li.appendChild(a); recent.appendChild(li);
+    });
+  }
+
+  document.getElementById("f").addEventListener("submit", function (e) { e.preventDefault(); search(input.value); window.scrollTo({top: 0, behavior: 'smooth'}); });
+
+  function start() {
+    renderRecent();
+    var q = params.get("doi");
+    if (q) { input.value = q; search(q); }
+  }
+
+  if (isDemo) { cards = DEMO; start(); }
+  else {
+    fetch(DATA_URL, { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function (data) { cards = Array.isArray(data) ? data : []; start(); })
+      .catch(function () { cards = []; start(); });
+  }
+})();
+</script>
+</body>
+</html>

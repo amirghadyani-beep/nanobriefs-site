@@ -1,232 +1,555 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DOI Lookup — NanoBriefs</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NanoBriefs � Structured research briefs for nanoelectronics</title>
+<meta name="description" content="NanoBriefs turns nanoelectronics papers into structured, source-traceable research briefs. Look up any DOI instantly.">
 <style>
   :root {
-    --bg: #ffffff; --fg: #1a1d21; --muted: #5b6470; --card: #f5f7fa; --line: #d9dee5;
-    --accent: #0b6bcb; --accent-fg: #ffffff; --ok: #12704a; --ok-bg: #e3f4ec; --warn: #8a5a00; --warn-bg: #fff3d6;
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --accent: #f093fb;
+    --bg: #f8f9fa;
+    --text: #333333;
+    --nano: #3b82f6;
+    --photonic: #10b981;
+    --computational: #8b5cf6;
+    --dark-blue: #1e3a8a;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #12151a; --fg: #e8ebef; --muted: #9aa4b1; --card: #1b2028; --line: #2c333d;
-      --accent: #4aa3ff; --accent-fg: #0a1220; --ok: #6fd6a6; --ok-bg: #12301f; --warn: #f0c060; --warn-bg: #33270d;
-    }
-  }
-  * { box-sizing: border-box; }
-  html { height: 100%; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
-    margin: 0; background: var(--bg); color: var(--fg);
-    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
   }
-  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; }
-  h1 { font-size: 1.6rem; margin: 0 0 4px; }
-  h2 { font-size: 1.15rem; margin: 28px 0 10px; }
-  .sub { color: var(--muted); margin: 0 0 20px; }
-  form { display: flex; gap: 8px; flex-wrap: wrap; }
-  input[type="text"] {
-    flex: 1 1 260px; min-width: 0; padding: 12px 14px; font-size: 1rem; color: var(--fg);
-    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+
+  h1, h2, h3, .brand, .cta, button, .tag, label, nav a, .tab-btn, input {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
-  button, .btn {
-    padding: 12px 18px; font-size: 1rem; border: 0; border-radius: 10px; cursor: pointer;
-    background: var(--accent); color: var(--accent-fg); text-decoration: none; display: inline-block;
+
+  a { color: inherit; }
+
+  /* HEADER */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 2rem;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 20;
   }
-  .btn.secondary { background: var(--card); color: var(--fg); border: 1px solid var(--line); }
-  .note { color: var(--muted); font-size: .9rem; margin-top: 10px; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-top: 18px; }
-  .card h3 { margin: 0 0 6px; font-size: 1.15rem; line-height: 1.35; }
-  .meta { color: var(--muted); font-size: .92rem; }
-  .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .8rem; margin-right: 6px; }
-  .badge.ok { background: var(--ok-bg); color: var(--ok); }
-  .badge.warn { background: var(--warn-bg); color: var(--warn); }
-  .badge.tag { background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
-  dl { margin: 14px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; }
-  dt { color: var(--muted); }
-  dd { margin: 0; }
-  ul { margin: 6px 0 0; padding-left: 20px; }
-  .tablewrap { overflow-x: auto; margin-top: 10px; }
-  table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 520px; }
-  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { color: var(--muted); font-weight: 600; }
-  .low { color: var(--warn); }
-  .empty { padding: 18px; border: 1px dashed var(--line); border-radius: 12px; margin-top: 18px; }
-  .list a { color: var(--accent); }
-  .list li { margin: 6px 0; }
-  footer { margin-top: 36px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 14px; }
-  .demo { background: var(--warn-bg); color: var(--warn); padding: 8px 12px; border-radius: 8px; margin-bottom: 14px; }
+  .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .brand img { height: 44px; }
+  nav { display: flex; gap: 1.6rem; }
+  nav a { text-decoration: none; font-size: 0.92rem; font-weight: 500; color: var(--text); }
+  nav a:hover { color: var(--primary); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 55%, #7e22ce 100%);
+    color: #fff;
+    padding: 3rem 2rem 3.5rem;
+    text-align: center;
+  }
+  .hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+    max-width: 780px;
+    margin: 0 auto 0.7rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .hero p.sub {
+    max-width: 620px;
+    margin: 0 auto 1.8rem;
+    font-size: 1.05rem;
+    opacity: 0.95;
+  }
+
+  /* DOI SEARCH */
+  .doi-search {
+    max-width: 640px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 14px;
+    padding: 1.3rem;
+    backdrop-filter: blur(8px);
+  }
+  .doi-search-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.7rem;
+    opacity: 0.95;
+  }
+  .doi-search-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .doi-search-row input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.85rem 1rem;
+    border-radius: 9px;
+    border: none;
+    font-size: 0.98rem;
+    font-family: monospace;
+  }
+  .doi-search-row button {
+    background: #fff;
+    color: var(--secondary);
+    border: none;
+    padding: 0.85rem 1.6rem;
+    border-radius: 9px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.98rem;
+    transition: all 0.15s;
+  }
+  .doi-search-row button:hover { background: #f1f1f1; transform: translateY(-1px); }
+  .doi-hint { font-size: 0.78rem; opacity: 0.85; margin-top: 0.7rem; }
+
+  .doi-result {
+    display: none;
+    margin-top: 1rem;
+    background: rgba(255,255,255,0.97);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    font-size: 0.92rem;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .doi-result.error { background: #fef2f2; color: #991b1b; }
+
+  .hero-links { margin-top: 1.5rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+  .hero-links a { color: #fff; text-decoration: none; font-size: 0.92rem; opacity: 0.9; border-bottom: 1px solid rgba(255,255,255,0.5); padding-bottom: 2px; }
+  .hero-links a:hover { opacity: 1; }
+
+  /* BRIEFS SECTION */
+  .section { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2rem 0; }
+  .section-heading h2 { font-family: Georgia, serif; font-size: 1.8rem; color: var(--secondary); }
+  .section-heading p { color: #666; margin-top: 0.4rem; font-size: 0.98rem; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 0.6rem; margin: 1.6rem 0 2rem; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 0.55rem 1.1rem;
+    border-radius: 20px;
+    border: 1.5px solid #ddd;
+    background: #fff;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.15s;
+  }
+  .tab-btn:hover { border-color: var(--primary); color: var(--primary); }
+  .tab-btn.active {
+    background: var(--dark-blue);
+    border-color: var(--dark-blue);
+    color: #fff;
+  }
+  .tab-btn .count { opacity: 0.7; font-weight: 400; margin-left: 3px; }
+
+  /* BRIEF CARDS GRID */
+  .briefs-grid { display: flex; flex-direction: column; gap: 1.4rem; }
+
+  .brief-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.6rem 1.8rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s;
+  }
+  .brief-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+  .brief-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.4rem; }
+  .brief-title { font-family: Georgia, serif; font-size: 1.15rem; font-weight: 700; text-decoration: none; color: var(--text); line-height: 1.35; }
+  .brief-title:hover { color: var(--primary); }
+
+  .tag {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    background: var(--dark-blue);
+  }
+
+  .brief-meta { font-size: 0.85rem; color: #666; margin-bottom: 0.9rem; }
+  .brief-card p.summary { font-size: 0.92rem; margin-bottom: 0.9rem; color: #444; }
+
+  .metrics-box {
+    background: #f4f0fb;
+    border-left: 3px solid var(--secondary);
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    font-size: 0.87rem;
+    margin-top: 0.6rem;
+  }
+  .metrics-box strong { color: var(--secondary); }
+
+  .findings-list { list-style: none; margin: 0.6rem 0 0; padding: 0; }
+  .findings-list li { font-size: 0.88rem; padding-left: 1.2rem; position: relative; margin-bottom: 0.35rem; }
+.findings-list li:before { content: "?"; position: absolute; left: 0.1rem; color: var(--primary); font-weight: 700; }
+  .limitations-list { list-style: none; margin: 0.6rem 0 0; padding: 0; }
+  .limitations-list li { font-size: 0.85rem; padding-left: 1.2rem; position: relative; margin-bottom: 0.3rem; color: #666; }
+.limitations-list li:before { content: "!"; position: absolute; left: 0.3rem; color: #f59e0b; font-weight: 700; font-family: monospace; }
+
+  .brief-actions { margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid #f0f0f0; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .btn-link {
+    font-size: 0.85rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border: 1.5px solid var(--primary);
+    border-radius: 6px;
+    transition: all 0.15s;
+  }
+  .btn-link:hover { background: var(--primary); color: #fff; }
+
+  /* ABOUT SECTION */
+  .about-section {
+    max-width: 900px;
+    margin: 4rem auto 0;
+    padding: 2.5rem 2rem;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .about-section h2 { font-family: Georgia, serif; font-size: 1.5rem; color: var(--secondary); margin-bottom: 0.8rem; }
+  .about-section p { font-size: 0.98rem; color: #555; margin-bottom: 0.8rem; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    font-size: 0.85rem;
+    color: #888;
+    background: #f0f0f2;
+    margin-top: 4rem;
+  }
+  footer a { color: var(--primary); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    nav { display: none; }
+    .hero { padding: 2rem 1.2rem 2.5rem; }
+    .section { padding: 2.5rem 1.2rem 0; }
+    .brief-card { padding: 1.2rem; }
+    .brand img { height: 36px; }
+  }
+
+  /* LOADING */
+  .loading { text-align: center; padding: 2rem; color: #888; }
 </style>
 </head>
 <body>
-<main>
-  <h1>DOI Lookup</h1>
-  <p class="sub">Paste a DOI to get a structured, human-checked summary and device metrics for nanoelectronics papers.</p>
 
-  <form id="f" autocomplete="off">
-    <input id="q" type="text" inputmode="url" placeholder="10.1234/example.2026.001" aria-label="DOI">
-    <button type="submit">Look up</button>
-  </form>
-  <p class="note">Phase 0: this page shows papers we have already processed. If your DOI isn't listed, you can request it and we'll add it manually.</p>
+<header>
+  <a href="#" class="brand">
+    <img src="logo.png" alt="NanoBriefs Logo">
+  </a>
+  <nav>
+    <a href="#briefs">Briefs</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <div id="out" aria-live="polite"></div>
+<section class="hero" id="home">
+  <h1>AI-powered research intelligence for nanoelectronics</h1>
+  <p class="sub">Structured, source-traceable briefs from the papers that matter.</p>
 
-  <h2>Recently added</h2>
-  <ul id="recent" class="list"></ul>
+  <div class="doi-search">
+    <div class="doi-search-label">LOOK UP ANY PAPER BY DOI</div>
+    <form class="doi-search-row" id="doi-form">
+      <input type="text" id="doi-input" placeholder="e.g. 10.1021/acsnano.6c02189" required>
+      <button type="submit">Get Brief</button>
+    </form>
+    <div class="doi-hint">Try any DOI from the "Recent briefs" section below.</div>
+    <div class="doi-result" id="doi-result"></div>
+  </div>
 
-  <footer>
-    Summaries are AI-assisted and reviewed by a person, but they can contain mistakes and are not a substitute for the original paper.
-    Always check numbers against the source (see the DOI link on each card).
-  </footer>
-</main>
+  <div class="hero-links">
+    <a href="#briefs">Browse recent briefs ?</a>
+    <a href="#about">Learn more ?</a>
+  </div>
+</section>
+
+<section class="section" id="briefs">
+  <div class="section-heading">
+    <h2>Recent research briefs</h2>
+    <p>Real, recently published papers � reviewed and structured the way every NanoBriefs entry is.</p>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <!-- Populated by JS -->
+  </div>
+
+  <div class="briefs-grid" id="briefs-grid">
+    <div class="loading">Loading briefs...</div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <h2>About NanoBriefs</h2>
+  <p>NanoBriefs turns dense nanoelectronics papers into structured, source-traceable research briefs. Every card is AI-assisted and human-reviewed, with explicit links to the original paper.</p>
+  <p>Our goal is to help researchers find and compare device metrics (mobility, on/off ratio, subthreshold swing) without reading every paper end-to-end.</p>
+  <p>Free to browse. More features coming in Phase 1.</p>
+</section>
+
+<footer id="contact">
+  <p>&copy; 2026 NanoBriefs &middot; <a href="mailto:requests@nanobriefs.com">requests@nanobriefs.com</a></p>
+</footer>
 
 <script>
-(function () {
-  // ---- settings: edit these two lines ----
-  var REQUEST_EMAIL = "requests@nanobriefs.com";
   var DATA_URL = "cards.json";
-  // ----------------------------------------
-
-  // BEGIN normalizeDoi
-  function normalizeDoi(s) {
-    s = String(s || "").trim().toLowerCase();
-    s = s.replace(/^(https?:\/\/)?(dx\.)?doi\.org\//, "");
-    s = s.replace(/^doi:\s*/, "");
-    s = s.trim().replace(/[.,;]+$/, "");
-    return /^10\.\d{4,9}\/\S+$/.test(s) ? s : null;
-  }
-  // END normalizeDoi
-
-  var DEMO = [{
-    doi: "10.0000/demo.0001", title: "DEMO ONLY: example paper title (not a real paper)",
-    authors: ["Demo Author"], journal: "Demo Journal", year: 2026, url: "https://doi.org/10.0000/demo.0001",
-    device_family: "TFET", material: "Example material", application: "Example application", method: "Simulation",
-    summary: "This is placeholder text used to preview the layout of a card.",
-    findings: ["Placeholder finding one.", "Placeholder finding two."], limitations: ["Placeholder limitation."],
-    metrics: [{ name: "SS", value: "0", unit: "mV/dec", conditions: "example conditions", source_location: "Table X", confidence: "low" }],
-    status: "verified"
-  }];
-
-  var params = new URLSearchParams(location.search);
-  var isDemo = params.get("demo") === "1";
+  var REQUEST_EMAIL = "requests@nanobriefs.com";
   var cards = [];
-  var out = document.getElementById("out");
-  var recent = document.getElementById("recent");
-  var input = document.getElementById("q");
+  var activeTab = "all";
 
+  // ====== Helpers ======
   function el(tag, cls, text) {
-    var n = document.createElement(tag);
-    if (cls) n.className = cls;
-    if (text !== undefined && text !== null) n.textContent = text;   // textContent only: data is never parsed as HTML
-    return n;
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
   }
-  function row(dl, label, value) {
-    if (value === null || value === undefined || value === "") return;
-    dl.appendChild(el("dt", null, label));
-    dl.appendChild(el("dd", null, value));
-  }
-  function list(items) {
-    var ul = el("ul");
-    (items || []).forEach(function (t) { ul.appendChild(el("li", null, t)); });
-    return ul;
+  function normalizeDoi(d) {
+    return (d || "").trim().toLowerCase().replace(/^https?:\/\/doi\.org\//, "");
   }
 
-  function renderCard(c) {
-    var card = el("article", "card");
-    var head = el("div");
-    head.appendChild(el("span", c.status === "verified" ? "badge ok" : "badge warn",
-                        c.status === "verified" ? "Reviewed" : "Needs review"));
-    if (c.device_family) head.appendChild(el("span", "badge tag", c.device_family));
-    card.appendChild(head);
-    card.appendChild(el("h3", null, c.title || "(untitled)"));
-    var authors = (c.authors || []).join(", ") + (c.authors_truncated ? " et al." : "");
-    card.appendChild(el("div", "meta", [authors, c.journal, c.year].filter(Boolean).join(" · ")));
+  // ====== Render tabs ======
+  function renderTabs() {
+    var tabsEl = document.getElementById("tabs");
+    tabsEl.innerHTML = "";
 
-    var dl = el("dl");
-    row(dl, "Material", c.material);
-    row(dl, "Application", c.application);
-    row(dl, "Method", c.method);
-    row(dl, "Summary", c.summary);
-    card.appendChild(dl);
+    var families = {};
+    cards.forEach(function (c) {
+      var f = c.device_family || "Other";
+      families[f] = (families[f] || 0) + 1;
+    });
 
-    if (c.findings && c.findings.length) { card.appendChild(el("h2", null, "Main findings")); card.appendChild(list(c.findings)); }
-    if (c.limitations && c.limitations.length) { card.appendChild(el("h2", null, "Limitations")); card.appendChild(list(c.limitations)); }
+    var all = el("button", "tab-btn active", "All");
+    all.dataset.tab = "all";
+    all.appendChild(el("span", "count", " (" + cards.length + ")"));
+    tabsEl.appendChild(all);
 
-    if (c.metrics && c.metrics.length) {
-      card.appendChild(el("h2", null, "Device metrics"));
-      var wrap = el("div", "tablewrap"), t = el("table"), thead = el("thead"), hr = el("tr");
-      ["Metric", "Value", "Unit", "Conditions", "Source", "Confidence"].forEach(function (h) { hr.appendChild(el("th", null, h)); });
-      thead.appendChild(hr); t.appendChild(thead);
-      var tb = el("tbody");
-      c.metrics.forEach(function (m) {
-        var tr = el("tr");
-        [m.name, m.value, m.unit || "", m.conditions || "", m.source_location || ""].forEach(function (v) { tr.appendChild(el("td", null, v)); });
-        tr.appendChild(el("td", m.confidence === "low" ? "low" : null, m.confidence || ""));
-        tb.appendChild(tr);
+    Object.keys(families).sort().forEach(function (f) {
+      if (f === "Other") return;
+      var b = el("button", "tab-btn", f);
+      b.dataset.tab = f;
+      b.appendChild(el("span", "count", " (" + families[f] + ")"));
+      tabsEl.appendChild(b);
+    });
+
+    tabsEl.querySelectorAll(".tab-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        tabsEl.querySelectorAll(".tab-btn").forEach(function (x) { x.classList.remove("active"); });
+        btn.classList.add("active");
+        activeTab = btn.dataset.tab;
+        renderBriefs();
       });
-      t.appendChild(tb); wrap.appendChild(t); card.appendChild(wrap);
-    }
-
-    var links = el("p");
-    var a = el("a", "btn secondary", "Open original paper (DOI)");
-    a.href = "https://doi.org/" + encodeURI(c.doi); a.target = "_blank"; a.rel = "noopener noreferrer";
-    links.appendChild(a); card.appendChild(links);
-    return card;
-  }
-
-  function renderMissing(doi) {
-    var box = el("div", "empty");
-    box.appendChild(el("p", null, "We don't have " + doi + " yet."));
-    var a = el("a", "btn", "Request this DOI");
-    var subject = "DOI request: " + doi;
-    var body = "Please add this paper to NanoBriefs:\n" + doi + "\n\nMy field / what I need from it (optional):\n";
-    a.href = "mailto:" + REQUEST_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-    box.appendChild(a);
-    return box;
-  }
-
-  function show(node) { out.textContent = ""; if (node) out.appendChild(node); }
-
-  function search(raw) {
-    var doi = normalizeDoi(raw);
-    if (!doi) { show(el("div", "empty", "That doesn't look like a DOI. Example: 10.1234/example.2026.001")); return; }
-    var hit = null;
-    cards.forEach(function (c) { if (normalizeDoi(c.doi) === doi) hit = c; });
-    if (hit) {
-      var wrap = el("div");
-      if (isDemo) wrap.appendChild(el("div", "demo", "Demo data — not a real paper."));
-      wrap.appendChild(renderCard(hit));
-      show(wrap);
-    } else show(renderMissing(doi));
-    try { history.replaceState(null, "", "?doi=" + encodeURIComponent(doi) + (isDemo ? "&demo=1" : "")); } catch (e) {}
-  }
-
-  function renderRecent() {
-    recent.textContent = "";
-    if (!cards.length) { recent.appendChild(el("li", null, "No papers published yet.")); return; }
-    cards.slice(0, 100).reverse().forEach(function (c) {
-      var li = el("li"), a = el("a", null, c.title || c.doi);
-      a.href = "#"; a.addEventListener("click", function (e) { e.preventDefault(); input.value = c.doi; search(c.doi); setTimeout(function(){ window.scrollTo({top: 0, behavior: 'smooth'}); }, 50); });      li.appendChild(a); recent.appendChild(li);
     });
   }
 
-  document.getElementById("f").addEventListener("submit", function (e) { e.preventDefault(); search(input.value); window.scrollTo({top: 0, behavior: 'smooth'}); });
+  // ====== Render a single brief ======
+  function renderBriefCard(c) {
+    var card = el("div", "brief-card");
 
-  function start() {
-    renderRecent();
-    var q = params.get("doi");
-    if (q) { input.value = q; search(q); }
+    var top = el("div", "brief-top");
+    var title = el("a", "brief-title", c.title || "Untitled");
+    title.href = c.url || ("https://doi.org/" + c.doi);
+    title.target = "_blank";
+    title.rel = "noopener";
+    top.appendChild(title);
+
+    if (c.device_family) {
+      var tag = el("span", "tag", c.device_family);
+      top.appendChild(tag);
+    }
+    card.appendChild(top);
+
+    var metaParts = [];
+    if (c.authors && c.authors.length) metaParts.push(c.authors.join(", "));
+    if (c.journal) metaParts.push(c.journal);
+    if (c.year) metaParts.push(c.year);
+    metaParts.push("DOI: " + c.doi);
+ card.appendChild(el("div", "brief-meta", metaParts.join(" | ")));
+
+    if (c.summary) {
+      card.appendChild(el("p", "summary", c.summary));
+    } else if (c.mechanism) {
+      card.appendChild(el("p", "summary", c.mechanism));
+    }
+
+    if (c.findings && c.findings.length) {
+      var h4 = el("h4", null, "Key findings");
+      h4.style.fontSize = "0.92rem";
+      h4.style.marginTop = "0.8rem";
+      h4.style.marginBottom = "0.3rem";
+      h4.style.color = "#555";
+      card.appendChild(h4);
+
+      var ul = el("ul", "findings-list");
+      c.findings.slice(0, 4).forEach(function (f) {
+        ul.appendChild(el("li", null, f));
+      });
+      card.appendChild(ul);
+    }
+
+    if (c.metrics && c.metrics.length) {
+      var metricsBox = el("div", "metrics-box");
+      var strong = el("strong", null, "Metrics: ");
+      metricsBox.appendChild(strong);
+
+      var metricTexts = c.metrics.slice(0, 4).map(function (m) {
+        if (typeof m === "string") return m;
+        var v = m.value != null ? m.value : (m.amount != null ? m.amount : "");
+        var u = m.unit || "";
+        var n = m.name || m.metric || "";
+        return n + ": " + v + " " + u;
+      });
+      metricsBox.appendChild(document.createTextNode(metricTexts.join(" | ")));
+      card.appendChild(metricsBox);
+    }
+
+    if (c.limitations && c.limitations.length) {
+      var h5 = el("h4", null, "Limitations");
+      h5.style.fontSize = "0.85rem";
+      h5.style.marginTop = "0.7rem";
+      h5.style.marginBottom = "0.3rem";
+      h5.style.color = "#888";
+      card.appendChild(h5);
+
+      var ul2 = el("ul", "limitations-list");
+      c.limitations.slice(0, 3).forEach(function (l) {
+        ul2.appendChild(el("li", null, l));
+      });
+      card.appendChild(ul2);
+    }
+
+    var actions = el("div", "brief-actions");
+    var link = el("a", "btn-link", "Open original paper (DOI)");
+    link.href = c.url || ("https://doi.org/" + c.doi);
+    link.target = "_blank";
+    link.rel = "noopener";
+    actions.appendChild(link);
+    card.appendChild(actions);
+
+    return card;
   }
 
-  if (isDemo) { cards = DEMO; start(); }
-  else {
-    fetch(DATA_URL, { cache: "no-cache" })
-      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-      .then(function (data) { cards = Array.isArray(data) ? data : []; start(); })
-      .catch(function () { cards = []; start(); });
+  // ====== Render briefs grid ======
+  function renderBriefs() {
+    var grid = document.getElementById("briefs-grid");
+    grid.innerHTML = "";
+
+    var filtered = cards;
+    if (activeTab !== "all") {
+      filtered = cards.filter(function (c) { return (c.device_family || "Other") === activeTab; });
+    }
+
+    if (!filtered.length) {
+      grid.appendChild(el("div", "loading", "No briefs in this category."));
+      return;
+    }
+
+    filtered.slice().reverse().forEach(function (c) {
+      grid.appendChild(renderBriefCard(c));
+    });
   }
-})();
+
+  // ====== DOI search ======
+  function search(doi) {
+    var resultBox = document.getElementById("doi-result");
+    resultBox.className = "doi-result";
+    resultBox.style.display = "block";
+    resultBox.innerHTML = "";
+
+    var norm = normalizeDoi(doi);
+    var hit = null;
+    cards.forEach(function (c) {
+      if (normalizeDoi(c.doi) === norm) hit = c;
+    });
+
+    if (hit) {
+      resultBox.appendChild(el("strong", null, "Found: "));
+      resultBox.appendChild(document.createTextNode(hit.title || ""));
+      resultBox.appendChild(document.createElement("br"));
+      resultBox.appendChild(document.createElement("br"));
+
+      var a = el("a", "btn-link", "Open full brief ?");
+      a.href = "#briefs";
+      a.style.display = "inline-block";
+      a.style.marginTop = "0.5rem";
+      a.addEventListener("click", function () {
+        activeTab = "all";
+        document.querySelectorAll(".tab-btn").forEach(function (x) {
+          x.classList.toggle("active", x.dataset.tab === "all");
+        });
+        renderBriefs();
+        setTimeout(function () {
+          document.querySelectorAll(".brief-card").forEach(function (card) {
+            var t = card.querySelector(".brief-title");
+            if (t && t.textContent === hit.title) {
+              card.scrollIntoView({ behavior: "smooth", block: "center" });
+              card.style.boxShadow = "0 0 0 3px " + "var(--primary)";
+              setTimeout(function () { card.style.boxShadow = ""; }, 2500);
+            }
+          });
+        }, 100);
+      });
+      resultBox.appendChild(a);
+    } else {
+      resultBox.className = "doi-result error";
+      resultBox.appendChild(el("strong", null, "Not in our library yet."));
+      resultBox.appendChild(document.createElement("br"));
+      resultBox.appendChild(document.createTextNode("DOI: " + doi));
+      resultBox.appendChild(document.createElement("br"));
+      resultBox.appendChild(document.createElement("br"));
+
+      var subject = encodeURIComponent("DOI request: " + doi);
+      var body = encodeURIComponent("Please add this paper to NanoBriefs:\n\nDOI: " + doi + "\n\n(Context / why it matters: )\n");
+      var mailto = "mailto:" + REQUEST_EMAIL + "?subject=" + subject + "&body=" + body;
+
+      var btn = el("a", "btn-link", "Request this DOI ?");
+      btn.href = mailto;
+      btn.style.display = "inline-block";
+      btn.style.marginTop = "0.5rem";
+      resultBox.appendChild(btn);
+    }
+  }
+
+  // ====== Init ======
+  document.getElementById("doi-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    search(document.getElementById("doi-input").value);
+  });
+
+  fetch(DATA_URL, { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(function (data) {
+      cards = Array.isArray(data) ? data : [];
+      renderTabs();
+      renderBriefs();
+    })
+    .catch(function () {
+      cards = [];
+      document.getElementById("briefs-grid").innerHTML = '<div class="loading">Could not load briefs.</div>';
+    });
 </script>
+
 </body>
 </html>
